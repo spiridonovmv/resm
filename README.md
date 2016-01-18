@@ -54,7 +54,9 @@ This project contained Dockerfile for built and run Docker image.
     
 *warning* port in run command and http_port in resm.config must be equal.
 
-You can run this image as service: sudo docker run -d -p 8080:8080 spiridonovmv/resm:latest
+You can run this image as service: 
+
+    sudo docker run -d -p 8080:8080 spiridonovmv/resm:latest
 
 Credits
 -------
