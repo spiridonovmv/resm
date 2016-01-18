@@ -21,5 +21,5 @@ handle(Req, State) ->
 
 terminate(_Reason,_Req, _State) ->ok.
 
-maybe_answer(<<"GET">>,Req)-> cowboy_req:reply(200, [{<<"content-type">>,<<"text/json; charset=utf-8">>}],resp_server:list(all), Req);
+maybe_answer(<<"GET">>,Req)-> cowboy_req:reply(200, [{<<"content-type">>,<<"text/json; charset=utf-8">>}], resm_server:list(all), Req);
 maybe_answer(_, Req) ->  handler_bad_request:bad_req(Req).

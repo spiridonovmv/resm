@@ -22,5 +22,5 @@ handle(Req, State) ->
 terminate(_Reason,_Req, _State) ->ok.
 
 
-maybe_answer(<<"GET">>,Req)-> resp_server:reset(),cowboy_req:reply(204, Req);
+maybe_answer(<<"GET">>,Req)-> resm_server:reset(),cowboy_req:reply(204, Req);
 maybe_answer(_, Req) ->  handler_bad_request:bad_req(Req).

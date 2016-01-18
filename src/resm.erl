@@ -6,7 +6,7 @@
 %%% @end
 %%% Created : 16. янв 2016 13:56
 %%%-------------------------------------------------------------------
--module(resp).
+-module(resm).
 -author("SpiridonovMV").
 
 %% API
@@ -21,5 +21,5 @@ start() ->
   ok = application:ensure_started(public_key),
   ok = application:ensure_started(ssl),
   ok = application:ensure_started(cowboy),
-  ok = application:ensure_started(resp).
+  ok = application:ensure_started(resm).
 

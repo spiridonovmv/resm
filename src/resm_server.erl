@@ -6,7 +6,7 @@
 %%% @end
 %%% Created : 16. янв 2016 14:46
 %%%-------------------------------------------------------------------
--module(resp_server).
+-module(resm_server).
 -author("SpiridonovMV").
 
 -behaviour(gen_server).
@@ -36,13 +36,13 @@
 %%% API
 %%%===================================================================
 
-allocate(Name)-> gen_server:call(resp_server,{allocate,Name}).
-deallocate(Resource)-> gen_server:call(resp_server,{deallocate,Resource}).
-list(Name)-> gen_server:call(resp_server,{list,Name}).
-reset()-> gen_server:call(resp_server,reset).
+allocate(Name)-> gen_server:call(resm_server,{allocate,Name}).
+deallocate(Resource)-> gen_server:call(resm_server,{deallocate,Resource}).
+list(Name)-> gen_server:call(resm_server,{list,Name}).
+reset()-> gen_server:call(resm_server,reset).
 
-stop()->gen_server:cast(resp_server,stop).
-status()->gen_server:call(resp_server,status).
+stop()->gen_server:cast(resm_server,stop).
+status()->gen_server:call(resm_server,status).
 
 %%--------------------------------------------------------------------
 %% @doc
@@ -51,7 +51,7 @@ status()->gen_server:call(resp_server,status).
 %% @end
 %%--------------------------------------------------------------------
 -spec(start_link() -> {ok, Pid :: pid()} | ignore | {error, Reason :: term()}).
-start_link() -> gen_server:start_link({local, resp_server}, resp_server, [], []).
+start_link() -> gen_server:start_link({local, resm_server}, resm_server, [], []).
 
 %%%===================================================================
 %%% gen_server callbacks
@@ -70,8 +70,8 @@ start_link() -> gen_server:start_link({local, resp_server}, resp_server, [], [])
 %%--------------------------------------------------------------------
 -spec(init(Args :: term()) -> {ok,  term()} | {ok,  term(), timeout() | hibernate} | {stop, Reason :: term()} | ignore).
 init([]) ->
-  Ets = ets:new(resp_ets,[ordered_set,private]),
-  gen_server:cast(resp_server,init),
+  Ets = ets:new(resm_ets,[ordered_set,private]),
+  gen_server:cast(resm_server,init),
   {ok, Ets}.
 
 %%--------------------------------------------------------------------
@@ -113,7 +113,7 @@ handle_call(reset,_,State)->
   {reply, reset_priv(State), State};
 
 handle_call(status,_,State)->
-  Count = application:get_env(resp,count_resources,5),
+  Count = application:get_env(resm,count_resources,5),
   Allocated = ets:select(State,[{{'$1','$2'},[{'/=','$2',empty}],['$_']}]),
   Deallocated  = lists:flatten(ets:match(State,{'$1',empty})),
   {reply, {Count,Allocated,Deallocated}, State};
@@ -199,7 +199,7 @@ list_priv(A)->A.
 
 reset_priv(Ets)->
   ets:delete_all_objects(Ets),
-  Count = application:get_env(resp,count_resources,5),
+  Count = application:get_env(resm,count_resources,5),
   Keys = [list_to_binary([<<"r">>,integer_to_list(N)])||N<-lists:seq(1,Count)],
   [ets:insert(Ets,{Key,empty})||Key <- Keys],
   ok.

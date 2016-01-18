@@ -15,7 +15,7 @@
 # under the License.
 #
 
-ERLFLAGS= -pa $(CURDIR)/.eunit -pa $(CURDIR)/ebin -pa $(CURDIR)/deps/*/ebin -boot start_sasl -config resm +P 13421 +A 128 -s resp +K true -name resm@machinezone
+ERLFLAGS= -pa $(CURDIR)/.eunit -pa $(CURDIR)/ebin -pa $(CURDIR)/deps/*/ebin -boot start_sasl -config resm +P 13421 +A 128 -s resm +K true -name resm@machinezone
 
 DEPS_PLT=$(CURDIR)/.deps_plt
 DEPS=erts kernel stdlib

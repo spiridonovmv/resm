@@ -1,4 +1,4 @@
--module(resp_app).
+-module(resm_app).
 
 -behaviour(application).
 
@@ -12,10 +12,10 @@
 start(_StartType, _StartArgs) ->
 
 
-  resp_sup:start_link(),
+  resm_sup:start_link(),
 
   {ok, _} = cowboy:start_http(http, 300,
-    [{port, application:get_env(resp,http_port, 8080)}],
+    [{port, application:get_env(resm,http_port, 8080)}],
     [
       {env, [{dispatch, disp:rule()}]},
       {timeout, 2000}

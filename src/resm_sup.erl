@@ -1,5 +1,4 @@
-
--module(resp_sup).
+-module(resm_sup).
 
 -behaviour(supervisor).
 
@@ -17,7 +16,7 @@
 %% ===================================================================
 
 start_link() ->
-    supervisor:start_link({local, resp_sup}, resp_sup, []).
+    supervisor:start_link({local, resm_sup}, resm_sup, []).
 
 %% ===================================================================
 %% Supervisor callbacks
@@ -29,5 +28,5 @@ init([]) ->
   MaxSecondsBetweenRestarts = 1,
 
   {ok, { {RestartStrategy, MaxRestarts, MaxSecondsBetweenRestarts}, [
-    ?CHILD(resp_server,worker)
+    ?CHILD(resm_server,worker)
   ]} }.

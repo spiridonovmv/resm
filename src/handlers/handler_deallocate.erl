@@ -25,7 +25,7 @@ handle(Req, State) ->
 terminate(_Reason,_Req, _State) ->ok.
 
 maybe_answer(undefined,_Method, Req ) ->  handler_bad_request:bad_req(Req);
-maybe_answer(Resource,<<"GET">>,Req)-> answer(resp_server:deallocate(Resource),Req);
+maybe_answer(Resource,<<"GET">>,Req)-> answer(resm_server:deallocate(Resource),Req);
 maybe_answer(_,_, Req) ->  handler_bad_request:bad_req(Req).
 
 answer(complete, Req)->cowboy_req:reply(204, Req);

@@ -17,32 +17,32 @@
 all() ->
   [
     {group, http},
-    {group, resp_server}
+    {group, resm_server}
   ].
 
 groups() ->
   [
     {http, [inorder], [tz_story,tz_bad]},
-    {resp_server, [inorder], [tz_story_server]}
+    {resm_server, [inorder], [tz_story_server]}
   ].
 
 init_per_group(http, Config) ->
-  resp:start(),
+  resm:start(),
   inets:start(),
   Config;
-init_per_group(resp_server, Config) ->
-  resp_server:start_link(),
+init_per_group(resm_server, Config) ->
+  resm_server:start_link(),
   Config;
 
 init_per_group(_, Config) -> Config.
 
 end_per_group(http, Config)->
-  spawn({resp,stop}),
+  spawn({resm,stop}),
   inets:stop(),
   Config;
 
-end_per_group(resp_server, Config)->
-  resp_server:stop(),
+end_per_group(resm_server, Config)->
+  resm_server:stop(),
   Config;
 
 end_per_group(_, Config)-> Config.
@@ -121,6 +121,6 @@ tz_story(_Config)->
     ).
 
 tz_story_server(_Config)->
-  ?assertEqual(ok,fun()-> resp_server:reset() end()),
-  ?assertEqual({5,[],[<<"r1">>,<<"r2">>,<<"r3">>,<<"r4">>,<<"r5">>]},fun()-> resp_server:status() end()),
-  ?assertEqual(<<"[]">>,fun()-> resp_server:list(<<"bob">>) end()).
+  ?assertEqual(ok,fun()-> resm_server:reset() end()),
+  ?assertEqual({5,[],[<<"r1">>,<<"r2">>,<<"r3">>,<<"r4">>,<<"r5">>]},fun()-> resm_server:status() end()),
+  ?assertEqual(<<"[]">>,fun()-> resm_server:list(<<"bob">>) end()).

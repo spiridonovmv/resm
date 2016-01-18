@@ -1,4 +1,4 @@
-{application, resp,
+{application, resm,
  [
   {description, ""},
   {vsn, "1"},
@@ -7,6 +7,6 @@
                   kernel,
                   stdlib
                  ]},
-  {mod, { resp_app, []}},
+  {mod, { resm_app, []}},
   {env, []}
  ]}.
