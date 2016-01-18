@@ -15,7 +15,7 @@
 # under the License.
 #
 
-ERLFLAGS= -pa $(CURDIR)/.eunit -pa $(CURDIR)/ebin -pa $(CURDIR)/deps/*/ebin -boot start_sasl -config resm +P 13421 +A 128 -s resp +K true -name resm@machinezone  -setcookie evwhqp3234d0557
+ERLFLAGS= -pa $(CURDIR)/.eunit -pa $(CURDIR)/ebin -pa $(CURDIR)/deps/*/ebin -boot start_sasl -config resm +P 13421 +A 128 -s resp +K true -name resm@machinezone
 
 DEPS_PLT=$(CURDIR)/.deps_plt
 DEPS=erts kernel stdlib
@@ -29,7 +29,7 @@ ifeq ($(ERL),)
 $(error "Erlang not available on this system")
 endif
 
-REBAR=$(shell which rebar)
+REBAR=$(shell which rebar  || echo ./rebar)
 
 ifeq ($(REBAR),)
 $(error "Rebar not available on this system")
