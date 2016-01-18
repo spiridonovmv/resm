@@ -21,10 +21,12 @@ RUN set -xe \
 	&& make install \
 	&& find /usr/local -name examples |xargs rm -rf \
 	&& apt-get purge -y --auto-remove $buildDeps \
-	&& rm -rf /usr/src/otp-src /var/lib/apt/lists/* \
-    && mkdir -p /opt \
+	&& rm -rf /usr/src/otp-src /var/lib/apt/lists/*
+
+RUN mkdir -p /opt \
     && cd /opt \
     && git clone https://github.com/spiridonovmv/resm.git \
+    && make
 
 EXPOSE 8080
 WORKDIR /opt/resm

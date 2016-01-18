@@ -1,8 +1,6 @@
 RESM for machinezone
 ========================
 
-
-
 Supported Methods
 -----------------
 
@@ -19,7 +17,6 @@ How usage
     make run        % Run application without test
     make shell      % Run application with test
     make ct         % Run tests.
-
 
 Configure
 -----
@@ -46,7 +43,18 @@ You can find all config in (PROJECT_ROOT/)resm.config
       }
     ].
     
+Docker
+-----
 
+This project contained Dockerfile for built and run Docker image.
+
+    build       % sudo docker build --tag=spiridonovmv/resm:latest ./
+    test & run  % sudo docker run -it --rm -p 8080:8080 spiridonovmv/resm:latest make shell
+    run         % sudo docker run -it --rm -p 8080:8080 spiridonovmv/resm:latest  
+    
+*warning* port in run command and http_port in resm.config must be equal.
+
+You can run this image as service: sudo docker run -d -p 8080:8080 spiridonovmv/resm:latest
 
 Credits
 -------

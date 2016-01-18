@@ -7,7 +7,7 @@
 %%% Created : 16. янв 2016 14:17
 %%%-------------------------------------------------------------------
 -module(handler_deallocate).
--author("che").
+-author("SpiridonovMV").
 
 %% API
 -export([init/3,handle/2,terminate/3]).
@@ -19,7 +19,6 @@ handle(Req, State) ->
   Resource = proplists:get_value(resource,Proplist),
   {Method, _} = cowboy_req:method(Req),
 
-  io:format("~62p~n",[{Resource,Method}]),
   {ok, Resp} = maybe_answer(Resource,Method,Req),
   {ok, Resp, State}.
 

@@ -7,7 +7,7 @@
 %%% Created : 16. янв 2016 14:17
 %%%-------------------------------------------------------------------
 -module(handler_allocate).
--author("che").
+-author("SpiridonovMV").
 
 %% API
 -export([init/3,handle/2,terminate/3]).

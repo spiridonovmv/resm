@@ -1,5 +1,5 @@
 %%%-------------------------------------------------------------------
-%%% @author che
+%%% @author SpiridonovMV
 %%% @copyright (C) 2016, <COMPANY>
 %%% @doc
 %%%
@@ -7,7 +7,7 @@
 %%% Created : 18. янв 2016 3:25
 %%%-------------------------------------------------------------------
 -module(basic_SUITE).
--author("che").
+-author("SpiridonovMV").
 
 -compile(export_all).
 %% API

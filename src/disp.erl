@@ -7,13 +7,12 @@
 %%% Created : 16. янв 2016 14:02
 %%%-------------------------------------------------------------------
 -module(disp).
--author("che").
+-author("SpiridonovMV").
 
 %% API
 -export([rule/0, restart/0]).
 
 restart()-> cowboy:set_env(http, dispatch,rule()).
-
 
 rule()->cowboy_router:compile([
   {'_',[

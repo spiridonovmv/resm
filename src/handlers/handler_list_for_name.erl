@@ -7,7 +7,7 @@
 %%% Created : 16. янв 2016 14:17
 %%%-------------------------------------------------------------------
 -module(handler_list_for_name).
--author("che").
+-author("SpiridonovMV").
 
 %% API
 -export([init/3,handle/2,terminate/3]).
@@ -19,7 +19,6 @@ handle(Req, State) ->
   Name = proplists:get_value(name,Proplist),
   {Method, _} = cowboy_req:method(Req),
 
-  io:format("~62p~n",[{Name,Method}]),
   {ok, Resp} = maybe_answer(Name,Method,Req),
   {ok, Resp, State}.
 

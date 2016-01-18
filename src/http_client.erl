@@ -1,5 +1,5 @@
 %%%-------------------------------------------------------------------
-%%% @author che
+%%% @author SpiridonovMV
 %%% @copyright (C) 2016, <COMPANY>
 %%% @doc
 %%%
@@ -7,13 +7,12 @@
 %%% Created : 17. янв 2016 23:48
 %%%-------------------------------------------------------------------
 -module(http_client).
--author("che").
+-author("SpiridonovMV").
 
 %% API
 -export([get/1]).
 
 
 get(Addr)->
-  %inets:start(),
   {ok,{{_,Code,_},_,Text}} = httpc:request(get, {Addr, []}, [], []),
   {Code,Text}.

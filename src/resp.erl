@@ -7,7 +7,7 @@
 %%% Created : 16. янв 2016 13:56
 %%%-------------------------------------------------------------------
 -module(resp).
--author("che").
+-author("SpiridonovMV").
 
 %% API
 -export([start/0]).

@@ -7,7 +7,7 @@
 %%% Created : 16. янв 2016 14:46
 %%%-------------------------------------------------------------------
 -module(resp_server).
--author("che").
+-author("SpiridonovMV").
 
 -behaviour(gen_server).
 

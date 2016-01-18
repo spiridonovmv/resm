@@ -7,7 +7,7 @@
 %%% Created : 16. янв 2016 14:17
 %%%-------------------------------------------------------------------
 -module(handler_list).
--author("che").
+-author("SpiridonovMV").
 
 %% API
 -export([init/3,handle/2,terminate/3]).
@@ -16,7 +16,6 @@ init(_Transport, Req, Opts) ->{ok, Req, Opts}.
 
 handle(Req, State) ->
   {Method, _} = cowboy_req:method(Req),
-  io:format("~62p~n",[{Method}]),
   {ok, Resp} = maybe_answer(Method,Req),
   {ok, Resp, State}.
 
